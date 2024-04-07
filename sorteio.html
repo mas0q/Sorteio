@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorteio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        #nomes {
+            margin-top: 20px;
+        }
+        textarea {
+            width: 300px;
+            height: 100px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #resultado {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sorteio</h1>
+    <div id="nomes">
+        <textarea id="nomes-input" placeholder="Insira os nomes separados por vírgula"></textarea>
+        <br>
+        <button onclick="sortear()">Sortear</button>
+    </div>
+    <div id="resultado">
+        <h2>Resultado:</h2>
+        <p id="nome-sorteado"></p>
+    </div>
+    <script>
+        function sortear() {
+            var nomesInput = document.getElementById('nomes-input').value;
+            var nomesArray = nomesInput.split(',');
+            
+            // Remove espaços extras dos nomes
+            for (var i = 0; i < nomesArray.length; i++) {
+                nomesArray[i] = nomesArray[i].trim();
+            }
+            
+            var numNomes = nomesArray.length;
+            
+            // Verifica se há nomes suficientes para sortear
+            if (numNomes > 0) {
+                var indiceSorteado = Math.floor(Math.random() * numNomes);
+                var nomeSorteado = nomesArray[indiceSorteado];
+                
+                document.getElementById('nome-sorteado').innerText = nomeSorteado;
+            } else {
+                alert('Insira pelo menos um nome para sortear.');
+            }
+        }
+    </script>
+</body>
+</html>
